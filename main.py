@@ -84,7 +84,7 @@ def upload_image(file: UploadFile = File(...)):
     file_name = f"{int(time.time())}-{file.filename}"
 
     supabase.storage.from_("event-images").upload(
-        file_name, file_bytes, {"content-type": file.content_type}
+        file_name, file_bytes, {"content-type": file.content_type} # type: ignore
     )
 
     public_url = supabase.storage.from_("event-images").get_public_url(file_name)
